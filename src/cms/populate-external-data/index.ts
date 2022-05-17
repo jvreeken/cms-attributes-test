@@ -86,7 +86,8 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
   // Query inner elements
   const image = newItem.querySelector<HTMLImageElement>('[data-element="image"]');
   const swatch = newItem.querySelector<HTMLImageElement>('[data-element="swatch"]');
-  const title = newItem.querySelector<HTMLHeadingElement>('[data-element="title"]');
+  const title = newItem.querySelector<HTMLDivElement>('[data-element="title"]');
+  const available_date_public = newItem.querySelector<HTMLDivElement>('[data-element="available-date-public"]');
   const product_sub_category = newItem.querySelector<HTMLDivElement>('[data-element="product_sub_category"]');
   const sku = newItem.querySelector<HTMLParagraphElement>('[data-element="sku"]');
   const price = newItem.querySelector<HTMLParagraphElement>('[data-element="price');
@@ -96,6 +97,7 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
   if (swatch && product.alternate_preview && product.parent_items[0]) swatch.src = product.parent_items[0].image.url;
   else if(swatch) swatch.remove();
   if (title) title.textContent = product.name;
+  if (available_date_public) available_date_public.textContent = product.available_date_public;
   if (product_sub_category) product_sub_category.textContent = product.product_sub_category;
   if (sku) sku.textContent = product.sku;
   if (price) price.textContent = "$" + Math.round(product.price);

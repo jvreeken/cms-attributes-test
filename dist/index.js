@@ -43,6 +43,7 @@
     const image = newItem.querySelector('[data-element="image"]');
     const swatch = newItem.querySelector('[data-element="swatch"]');
     const title = newItem.querySelector('[data-element="title"]');
+    const available_date_public = newItem.querySelector('[data-element="available-date-public"]');
     const product_sub_category = newItem.querySelector('[data-element="product_sub_category"]');
     const sku = newItem.querySelector('[data-element="sku"]');
     const price = newItem.querySelector('[data-element="price');
@@ -54,6 +55,8 @@
       swatch.remove();
     if (title)
       title.textContent = product.name;
+    if (available_date_public)
+      available_date_public.textContent = product.available_date_public;
     if (product_sub_category)
       product_sub_category.textContent = product.product_sub_category;
     if (sku)
