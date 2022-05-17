@@ -5,7 +5,7 @@ const buildDirectory = 'dist';
 const production = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const entryPoints = ['src/index.ts'];
+const entryPoints = ['src/cms/populate-external-data/index.ts'];
 
 /**
  * Default Settings
@@ -14,9 +14,9 @@ const entryPoints = ['src/index.ts'];
 const defaultSettings = {
   bundle: true,
   outdir: buildDirectory,
-  minify: production,
+  minify: false,
   sourcemap: !production,
-  target: production ? 'es6' : 'esnext',
+  target: 'esnext',
   entryPoints,
 };
 
