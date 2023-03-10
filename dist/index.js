@@ -46,7 +46,6 @@
           cleanData.push(data[i]);
         }
       }
-      console.log(cleanData);
       return cleanData;
     } catch (error) {
       return [];
@@ -83,7 +82,6 @@
     if (link)
       link.href = "https://www.youniqueproducts.com/products/view/" + product.sku;
     if (product.item_availability.item_availability_id === 11) {
-      console.log(newItem);
       newItem.classList.add("out-of-stock");
     }
     return newItem;
