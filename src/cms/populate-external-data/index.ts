@@ -56,12 +56,21 @@ const fetchProducts = async () => {
         const response = await fetch('https://www.youniqueproducts.com/myk/bulk/US-11805-01,US-16204-06,US-16204-03,US-11601-01,US-11601-02,US-11601-03,US-12001-03,US-11102-04,US-11102-02,US-52033-01,US-13001-01,US-13001-02,US-13001-03,US-13001-04,US-52049-00,US-52042-01,US-12304-03,US-35101-04,US-91521-25,US-53011-01,US-11601-04,US-11601-05,US-11601-06,US-31201-01,US-42022-07,US-42022-09,US-91518-43,US-16204-15');
         const data: Product[] = await response.json();
         const cleanData = [];
+        //PUSH OUT OF STOCK TO THE BOTTOM OF THE LIST
         for (let i = 0; i < data.length; i++) {
             // if ((data[i].status === 'active') && (data[i].enabled === 1) && (data[i].price != "0.00") && (data[i].product_sub_category != "Variant Master") && (data[i].product_sub_category != "BFCM") && (data[i].product_sub_category != "Kudos")) {
             //     cleanData.push(data[i]);
             // }
-            cleanData.push(data[i]);
+            if (data[i].item_availability.item_availability_id != 11){
+                cleanData.push(data[i]);
+            }
         }
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].item_availability.item_availability_id === 11){
+                cleanData.push(data[i]);
+            }
+        }
+        console.log(cleanData);
         return cleanData;
     } catch (error) {
         return [];
@@ -97,6 +106,10 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
     if (price) price.textContent = "$" + Math.round(product.price);
     if (link) link.textContent = product.name;
     if (link) link.href = "https://www.youniqueproducts.com/products/view/" + product.sku;
+    if (product.item_availability.item_availability_id === 11) {
+        console.log(newItem);
+        newItem.classList.add("out-of-stock");
+    }
     return newItem;
 };
 /**
